@@ -8,8 +8,12 @@
       <!-- allows us through interperlate to display input -->
       <ul>
       <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
-        <li v-for="(data, i) in skills" :key="i">{{i+1}}.{{data.skill}}</li>
+        <li v-for="(data, i) in skills" :key="i">{{i+1}}.{{data.skill}}
+        <i class="fa fa-minus-circle" v-on:click="remove(i)"></i>
+        </li>
+      
       </transition-group>
+      <!--transition group to use animation on the list -->
       </ul>
       <p> These are your skills!</p>
       <!-- <p v-if="skills.length >= 1">You have more than 1 skill</p>
@@ -37,16 +41,22 @@ export default {
     addSkill() {
       this.skills.push({skill: this.skill});
       this.skill = '';
-      // set skill to empty string so any input would work
+      // set skill to empty string so any input would work     
+    },
+    remove(id) {
+      this.skills.splice(id,1);
     }
   }
-}
+
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "http://cdn.jsdelivr.net/npm/animate.css@3.5.1";
  /* if you have a lot of css make a css file and inlude inside style tag  src="./Skills.css" scoped> */
+ @import "http://cdn.jsdelivr.net/npm/animate.css@3.5.1";
+/* importing custom animation from 3rd party */
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
  .holder {
     background: #fff;
   }
