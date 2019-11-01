@@ -4,11 +4,12 @@
       <form @submit.prevent="addSkill">
       <input type="text" placeholder="Enter a skill" v-model="skill">
       {{ skill }} 
-      <input type="checkbox" id="checkbox" v-model="checked">
       </form>
       <!-- allows us through interperlate to display input -->
       <ul>
+      <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
         <li v-for="(data, i) in skills" :key="i">{{i+1}}.{{data.skill}}</li>
+      </transition-group>
       </ul>
       <p> These are your skills!</p>
       <!-- <p v-if="skills.length >= 1">You have more than 1 skill</p>
@@ -22,7 +23,6 @@ export default {
   name: 'Skills',
   data() {
     return {
-      checked: false,
       skill: '',
       skills: [
         {"skill": "Vue.js"},
@@ -38,7 +38,7 @@ export default {
       this.skills.push({skill: this.skill});
       this.skill = '';
       // set skill to empty string so any input would work
-       console.log('This checkbox value is: '+this.checked);
+       
     }
   }
 }
@@ -46,6 +46,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "http://cdn.jsdelivr.net/npm/animate.css@3.5.1";
  /* if you have a lot of css make a css file and inlude inside style tag  src="./Skills.css" scoped> */
  .holder {
     background: #fff;
