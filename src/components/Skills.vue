@@ -38,7 +38,6 @@ export default {
       this.skills.push({skill: this.skill});
       this.skill = '';
       // set skill to empty string so any input would work
-       
     }
   }
 }
